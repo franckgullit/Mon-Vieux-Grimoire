@@ -1,10 +1,14 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://mon_vieux_grimoire:liverpoolarmy@cluster-monvieuxgrimoir.cxng0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-MonVieuxGrimoire',
-    {
+const mongoConnectionConfig=`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}/${process.env.MONGO_OPTIONS}`;
+
+ mongoose.connect(mongoConnectionConfig,{
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
