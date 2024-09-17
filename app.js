@@ -6,8 +6,9 @@ const bodyparser = require('body-Parser');
 const mongoose = require('mongoose');
 
 const bookRoutes = require('./routes/books');
+const userRoutes = require('./routes/user')
 
-const app = express();
+
 
 const mongoConnectionConfig = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}/${process.env.MONGO_OPTIONS}`;
 
@@ -19,8 +20,7 @@ mongoose.connect(mongoConnectionConfig, {
     .then(() => console.log('MongoDB - connection Success !'))
     .catch(() => console.log('Connexion - connection Failed !'));
 
-app.use(express.json());
-
+const app = express();
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -31,6 +31,7 @@ app.use((req, res, next) => {
 
 app.use(bodyparser());
 
-app.use('/api/Books', bookRoutes);
+app.use('/api/books', bookRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
