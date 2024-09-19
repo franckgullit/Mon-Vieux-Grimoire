@@ -10,6 +10,7 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 app.use(express.json()); // Middleware to parse JSON bodies
+app.use('/images', express.static('images'));
 
 const mongoConnectionConfig = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}/${process.env.MONGO_OPTIONS}`;
 
