@@ -5,9 +5,9 @@ const router = express.Router();
 
 const bookCtrl = require('../controllers/Books-Ctrl.js');
 
-router.get('/', auth, bookCtrl.getAllBooks);
+router.get('/',bookCtrl.getAllBooks);
 router.post('/', auth, multer, bookCtrl.createBook);
-router.get('/:id', auth, bookCtrl.getOneBook);
+router.get('/:id',bookCtrl.getOneBook);
 router.put('/:id', auth, multer, bookCtrl.modifyBook);
 router.delete('/:id', auth, bookCtrl.deleteBook);
 
